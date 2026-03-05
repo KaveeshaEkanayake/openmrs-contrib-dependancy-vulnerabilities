@@ -19,6 +19,12 @@ export const sortRepositories = (repos, sortBy = 'severity') => {
         const scoreA = severityToScore(a.severity);
         const scoreB = severityToScore(b.severity);
         if (scoreA !== scoreB) return scoreB - scoreA;
+        
+        // Secondary: highest CVE score in repo
+        if (a.highestCveScore !== b.highestCveScore) {
+          return b.highestCveScore - a.highestCveScore;
+        }
+        
         return a.name.localeCompare(b.name);
       });
 
@@ -30,6 +36,12 @@ export const sortRepositories = (repos, sortBy = 'severity') => {
         const countA = a.vulnerabilityCount || 0;
         const countB = b.vulnerabilityCount || 0;
         if (countA !== countB) return countB - countA;
+        
+        // Secondary: highest CVE score
+        if (a.highestCveScore !== b.highestCveScore) {
+          return b.highestCveScore - a.highestCveScore;
+        }
+        
         return a.name.localeCompare(b.name);
       });
 
@@ -53,6 +65,12 @@ export const sortDependencies = (dependencies, sortBy = 'severity') => {
         const scoreA = severityToScore(a.severity);
         const scoreB = severityToScore(b.severity);
         if (scoreA !== scoreB) return scoreB - scoreA;
+        
+        // Secondary: highest CVE score
+        if (a.highestScore !== b.highestScore) {
+          return b.highestScore - a.highestScore;
+        }
+        
         return a.name.localeCompare(b.name);
       });
 
@@ -64,6 +82,12 @@ export const sortDependencies = (dependencies, sortBy = 'severity') => {
         const countA = a.cves?.length || 0;
         const countB = b.cves?.length || 0;
         if (countA !== countB) return countB - countA;
+        
+        // Secondary: highest CVE score
+        if (a.highestScore !== b.highestScore) {
+          return b.highestScore - a.highestScore;
+        }
+        
         return a.name.localeCompare(b.name);
       });
 

@@ -37,7 +37,8 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1>OpenMRS Dependency Vulnerability Report</h1>
+        <h1 className="header-title">OpenMRS Dependency Vulnerability Report</h1>
+        <div className="header-accent" />
         <p>
           A summary of known security vulnerabilities detected across OpenMRS modules by automated dependency scanning. 
           Each module lists its vulnerable dependencies, severity levels, and recommended fix versions to help maintainers prioritize upgrades.
@@ -56,7 +57,7 @@ function App() {
         ) : data && data.length > 0 ? (
           <>
             <div className="sorting-controls">
-              <span style={{ fontWeight: 600, marginRight: '10px' }}>Sort by:</span>
+              <span className="sort-label">Sort by:</span>
               <button 
                 className={`sort-button ${sortBy === 'severity' ? 'active' : ''}`}
                 onClick={() => setSortBy('severity')}

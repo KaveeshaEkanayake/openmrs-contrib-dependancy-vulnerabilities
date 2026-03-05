@@ -8,7 +8,9 @@ A production-quality React dashboard that displays dependency vulnerability repo
 - **Dependency Details**: See affected dependencies with versions and severity levels
 - **CVE Information**: Expandable CVE details including descriptions, scores, and fix versions
 - **Severity Badges**: Color-coded badges for Critical, High, Medium, and Low severities
-- **Sorting Controls**: Sort repositories by severity, CVE count, or name
+- **Interactive Sorting**: Sort repositories by Severity, CVE Count, or Name (A-Z)
+- **Exploit Detection**: Identifies vulnerabilities with known exploits
+- **Keyboard Accessible**: Full keyboard navigation support (Tab, Enter, Space)
 - **Responsive Design**: Clean, professional UI that works across devices
 - **No Backend Required**: All data is processed client-side from JSON files
 
@@ -104,9 +106,10 @@ const repositories = [
 
 Fetches and processes vulnerability data:
 - Groups vulnerabilities by dependency
-- Calculates severity levels
-- Extracts fix versions
-- Sorts CVEs by severity
+- Calculates severity levels from CVE data
+- Detects exploits from descriptions and reference links
+- Extracts fix versions from CVE descriptions
+- Sorts dependencies and CVEs by severity (highest first)
 
 ### Severity Calculation
 

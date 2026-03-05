@@ -11,45 +11,98 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: #ececec;
+  color: #2e2e2e;
 }
 
 /* Header Section */
 .header {
-  background: white;
-  padding: 40px 20px;
-  border-bottom: 3px solid #0b7285;
-  margin-bottom: 30px;
+  max-width: 1220px;
+  margin: 26px auto 34px;
+  padding: 0 12px;
+  background: transparent;
 }
 
-.header h1 {
-  font-size: 32px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 15px;
+.header-title {
+  font-size: 54px;
+  line-height: 1.1;
+  font-weight: 500;
+  color: #0f0f0f;
+  margin-bottom: 14px;
+  letter-spacing: -0.6px;
 }
 
 .header p {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #555;
-  max-width: 900px;
+  font-size: 28px;
+  line-height: 1.42;
+  color: #202020;
+  max-width: 1180px;
+  letter-spacing: 0.15px;
+}
+
+.header-accent {
+  width: 124px;
+  height: 10px;
+  background: #008a8b;
+  margin-bottom: 20px;
 }
 
 /* Main Container */
 .container {
-  max-width: 1200px;
+  max-width: 1220px;
   margin: 0 auto;
-  padding: 0 20px 40px;
+  padding: 0 12px 46px;
+}
+
+/* Sorting Controls */
+.sorting-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 18px 20px;
+  background: #efefef;
+  border: 1px solid #d2d2d2;
+  flex-wrap: wrap;
+}
+
+.sort-label {
+  font-size: 24px;
+  font-weight: 600;
+  color: #4b4b4b;
+  margin-right: 6px;
+}
+
+.sort-button {
+  padding: 10px 20px;
+  background: #ffffff;
+  border: 2px solid #d2d2d2;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 500;
+  color: #4b4b4b;
+  transition: all 0.2s ease;
+}
+
+.sort-button:hover {
+  background: #fafafa;
+  border-color: #b8b8b8;
+}
+
+.sort-button.active {
+  background: #008a8b;
+  color: #ffffff;
+  border-color: #008a8b;
 }
 
 /* Repository Section */
 .repo-section {
-  background: white;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: #efefef;
+  margin-bottom: 18px;
+  border: 1px solid #d2d2d2;
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
 }
 
@@ -57,40 +110,43 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 20px;
-  background: #f9f9f9;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 32px 20px;
+  background: #efefef;
+  border-bottom: 1px solid #d7d7d7;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.15s ease;
 }
 
 .repo-header:hover {
-  background: #f0f0f0;
+  background: #ebebeb;
 }
 
 .repo-header-info {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   flex: 1;
 }
 
 .repo-title {
-  font-size: 16px;
+  font-size: 34px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #4b4b4b;
+  line-height: 1.2;
 }
 
 .repo-controls {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .expand-icon {
-  font-size: 12px;
-  transition: transform 0.3s;
-  color: #666;
+  font-size: 24px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  color: #4d4d4d;
+  margin-right: 10px;
 }
 
 .expand-icon.expanded {
@@ -100,69 +156,83 @@ body {
 /* Severity Badge */
 .badge {
   display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 21px;
+  font-weight: 500;
+  text-transform: none;
+  line-height: 1;
 }
 
 .badge.critical {
-  background-color: #ffebee;
-  color: #c62828;
+  background-color: #ef7c88;
+  color: #7b121d;
 }
 
 .badge.high {
-  background-color: #fce4ec;
-  color: #d81b60;
+  background-color: #f7bec6;
+  color: #b83b4c;
 }
 
 .badge.medium {
-  background-color: #fff3e0;
-  color: #e65100;
+  background-color: #efc95a;
+  color: #7d5a00;
 }
 
 .badge.low {
-  background-color: #f1f8e9;
-  color: #558b2f;
+  background-color: #d9ead3;
+  color: #3d6a33;
 }
 
 /* Table Styles */
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: 24px;
+  background: #efefef;
 }
 
 .table thead {
-  background: #f5f5f5;
-  border-bottom: 2px solid #e0e0e0;
+  background: #cfcfcf;
+  border-bottom: 1px solid #c1c1c1;
 }
 
 .table th {
-  padding: 12px 15px;
+  padding: 16px 14px;
   text-align: left;
   font-weight: 600;
-  color: #333;
-  border-right: 1px solid #e0e0e0;
+  color: #252525;
+  border-right: 1px solid #d7d7d7;
 }
 
 .table th:last-child {
   border-right: none;
 }
 
+.severity-column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sort-indicator {
+  font-size: 25px;
+  font-weight: 500;
+}
+
 .table tbody tr {
-  border-bottom: 1px solid #e0e0e0;
-  transition: background 0.2s;
+  border-bottom: 1px solid #d2d2d2;
+  transition: background 0.15s ease;
 }
 
 .table tbody tr:hover {
-  background: #fafafa;
+  background: #ebebeb;
 }
 
 .table td {
-  padding: 12px 15px;
-  border-right: 1px solid #e0e0e0;
+  padding: 16px 14px;
+  border-right: 1px solid #d7d7d7;
+  color: #4e4e4e;
 }
 
 .table td:last-child {
@@ -180,45 +250,47 @@ body {
 }
 
 .expandable-row:hover {
-  background: #fafafa;
+  background: #ebebeb;
 }
 
 .expand-toggle {
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
   text-align: center;
-  font-size: 12px;
-  color: #666;
+  font-size: 20px;
+  color: #4c4c4c;
   cursor: pointer;
   user-select: none;
+  margin-right: 6px;
 }
 
 /* CVE Details Table */
 .cve-details {
-  background: #f9f9f9;
+  background: #efefef;
 }
 
 .cve-details-table {
   width: 100%;
-  margin: 15px;
+  margin: 8px 0 18px;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 22px;
 }
 
 .cve-details-table th {
-  background: #efefef;
-  padding: 10px 12px;
+  background: #dfdfdf;
+  padding: 14px 12px;
   text-align: left;
   font-weight: 600;
-  border-bottom: 1px solid #ddd;
-  font-size: 12px;
+  border-bottom: 1px solid #c9c9c9;
+  font-size: 20px;
+  color: #2f2f2f;
 }
 
 .cve-details-table td {
-  padding: 10px 12px;
-  border-bottom: 1px solid #f0f0f0;
+  padding: 13px 12px;
+  border-bottom: 1px solid #d7d7d7;
 }
 
 .cve-details-table tr:last-child td {
@@ -227,7 +299,7 @@ body {
 
 /* CVE ID Link */
 .cve-id {
-  color: #0066cc;
+  color: #1f80d5;
   text-decoration: none;
   font-weight: 500;
 }
@@ -238,82 +310,112 @@ body {
 
 /* Description Text */
 .description {
-  line-height: 1.5;
+  line-height: 1.35;
   word-wrap: break-word;
-  max-width: 500px;
+  max-width: 760px;
 }
 
 /* Empty State */
 .empty-state {
-  padding: 30px;
+  padding: 38px;
   text-align: center;
-  color: #999;
-}
-
-/* Sorting Controls */
-.sorting-controls {
-  padding: 20px 20px;
-  background: white;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.sort-button {
-  padding: 8px 16px;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
-  color: #333;
-  transition: all 0.2s;
-}
-
-.sort-button:hover {
-  background: #f0f0f0;
-  border-color: #bbb;
-}
-
-.sort-button.active {
-  background: #0b7285;
-  color: white;
-  border-color: #0b7285;
+  color: #6f6f6f;
+  background: #efefef;
+  border: 1px solid #d2d2d2;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .header {
-    padding: 25px 15px;
+    margin: 20px auto 26px;
+    padding: 0 12px;
   }
 
-  .header h1 {
-    font-size: 24px;
+  .header-title {
+    font-size: 34px;
+    margin-bottom: 12px;
+  }
+
+  .header-accent {
+    width: 92px;
+    height: 7px;
+    margin-bottom: 14px;
   }
 
   .header p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .sorting-controls {
+    padding: 14px 12px;
+    margin-bottom: 18px;
+    gap: 8px;
+  }
+
+  .sort-label {
+    font-size: 15px;
+    margin-right: 4px;
+  }
+
+  .sort-button {
+    padding: 8px 14px;
     font-size: 14px;
   }
 
   .repo-header {
-    flex-wrap: wrap;
+    padding: 18px 14px;
+  }
+
+  .repo-title {
+    font-size: 24px;
+  }
+
+  .badge {
+    font-size: 13px;
+    padding: 6px 11px;
+  }
+
+  .expand-icon {
+    font-size: 20px;
+    margin-right: 0;
   }
 
   .table {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .table th,
   .table td {
-    padding: 8px 10px;
+    padding: 10px 8px;
+  }
+
+  .sort-indicator {
+    font-size: 16px;
+  }
+
+  .expand-toggle {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    margin-right: 4px;
+  }
+
+  .cve-details-table {
+    font-size: 12px;
+  }
+
+  .cve-details-table th {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .cve-details-table td {
+    padding: 8px;
   }
 
   .description {
-    max-width: 350px;
+    max-width: 260px;
   }
 }

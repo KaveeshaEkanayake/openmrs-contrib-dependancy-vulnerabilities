@@ -4,12 +4,17 @@
   "description": "OpenMRS Dependency Vulnerability Dashboard",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1"
   },
   "scripts": {
+    "predev": "node scripts/sync-data.js && node scripts/free-port.js 3000",
+    "dev": "react-scripts start",
+    "prestart": "node scripts/sync-data.js && node scripts/free-port.js 3000",
     "start": "react-scripts start",
+    "prebuild": "node scripts/sync-data.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

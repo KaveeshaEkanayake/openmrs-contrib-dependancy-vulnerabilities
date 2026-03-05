@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * SeverityBadge component displays severity level with appropriate styling
@@ -15,5 +16,14 @@ function SeverityBadge({ severity, className = '' }) {
     </span>
   );
 }
+
+SeverityBadge.propTypes = {
+  severity: PropTypes.string,
+  className: PropTypes.string,
+};
+
+SeverityBadge.defaultProps = {
+  className: '',
+};
 
 export default SeverityBadge;

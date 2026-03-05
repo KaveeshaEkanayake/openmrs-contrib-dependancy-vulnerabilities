@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SeverityBadge from './SeverityBadge';
 
 /**
@@ -54,5 +55,19 @@ function CveTable({ cves }) {
     </table>
   );
 }
+
+CveTable.propTypes = {
+  cves: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      severity: PropTypes.string.isRequired,
+      score: PropTypes.number,
+      description: PropTypes.string,
+      affectedVersions: PropTypes.string,
+      fixedIn: PropTypes.string,
+      cwe: PropTypes.string,
+    })
+  ),
+};
 
 export default CveTable;

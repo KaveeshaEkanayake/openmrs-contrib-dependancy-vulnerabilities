@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SeverityBadge from './SeverityBadge';
 import DependencyRow from './DependencyRow';
 
@@ -17,18 +18,30 @@ function RepoSection({
   expandedDependencies,
   onToggleDependency
 }) {
-  const depKey = `${repo.name}`;
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onToggle();
+    }
+  };
 
   return (
     <div className="repo-section">
-      <div className="repo-header" onClick={onToggle}>
+      <div 
+        className="repo-header" 
+        onClick={onToggle}
+        onKeyDown={handleKeyDown}
+        role="button"
+        tabIndex={0}
+        aria-expanded={isExpanded}
+      >
         <div className="repo-header-info">
           <span className="repo-title">{repo.name}</span>
+          <SeverityBadge severity={repo.severity} />
         </div>
         <div className="repo-controls">
-          <SeverityBadge severity={repo.severity} />
           <span className={`expand-icon ${isExpanded ? 'expanded' : ''}`}>
-            ▼
+            ⌄
           </span>
         </div>
       </div>
@@ -41,7 +54,10 @@ function RepoSection({
                 <tr>
                   <th>Dependency</th>
                   <th>Version</th>
-                  <th>Severity</th>
+                  <th className="severity-column-header">
+                    <span>Severity</span>
+                    <span className="sort-indicator">↑</span>
+                  </th>
                   <th>CVEs</th>
                   <th>Exploit?</th>
                   <th>Fix Version</th>
@@ -71,5 +87,17 @@ function RepoSection({
     </div>
   );
 }
+
+RepoSection.propTypes = {
+  repo: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    severity: PropTypes.string.isRequired,
+    dependencies: PropTypes.array.isRequired,
+  }).isRequired,
+  isExpanded: PropTypes.bool.isRequired,
+  onToggle: PropTypes.func.isRequired,
+  expandedDependencies: PropTypes.instanceOf(Set).isRequired,
+  onToggleDependency: PropTypes.func.isRequired,
+};
 
 export default RepoSection;
