@@ -244,6 +244,47 @@ body {
   overflow-x: auto;
 }
 
+/* Dependency Sorting Controls */
+.dependency-sorting-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 18px;
+  background: #e8e8e8;
+  border-bottom: 1px solid #d2d2d2;
+  flex-wrap: wrap;
+}
+
+.dep-sort-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4b4b4b;
+  margin-right: 4px;
+}
+
+.dep-sort-button {
+  padding: 8px 16px;
+  background: #ffffff;
+  border: 2px solid #d2d2d2;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: #4b4b4b;
+  transition: all 0.2s ease;
+}
+
+.dep-sort-button:hover {
+  background: #fafafa;
+  border-color: #b8b8b8;
+}
+
+.dep-sort-button.active {
+  background: #006666;
+  color: #ffffff;
+  border-color: #006666;
+}
+
 /* Expandable Row */
 .expandable-row {
   cursor: pointer;
@@ -361,6 +402,21 @@ body {
   .sort-button {
     padding: 8px 14px;
     font-size: 14px;
+  }
+
+  .dependency-sorting-controls {
+    padding: 12px 10px;
+    gap: 6px;
+  }
+
+  .dep-sort-label {
+    font-size: 13px;
+    margin-right: 2px;
+  }
+
+  .dep-sort-button {
+    padding: 6px 12px;
+    font-size: 13px;
   }
 
   .repo-header {

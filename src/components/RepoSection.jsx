@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import SeverityBadge from './SeverityBadge';
 import DependencyRow from './DependencyRow';
+import { sortDependencies } from '../utils/sortingUtils';
 
 /**
  * RepoSection component displays a repository with collapsible dependencies table
@@ -18,12 +19,20 @@ function RepoSection({
   expandedDependencies,
   onToggleDependency
 }) {
+  const [depSortBy, setDepSortBy] = useState('severity');
+
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       onToggle();
     }
   };
+
+  // Sort dependencies based on selected criteria
+  const sortedDependencies = useMemo(() => {
+    if (!repo.dependencies) return [];
+    return sortDependencies(repo.dependencies, depSortBy);
+  }, [repo.dependencies, depSortBy]);
 
   return (
     <div className="repo-section">
@@ -49,22 +58,41 @@ function RepoSection({
       {isExpanded && (
         <div className="dependency-table-wrapper">
           {repo.dependencies && repo.dependencies.length > 0 ? (
-            <table className="table">
+            <>
+              <div className="dependency-sorting-controls">
+                <span className="dep-sort-label">Sort dependencies:</span>
+                <button 
+                  className={`dep-sort-button ${depSortBy === 'severity' ? 'active' : ''}`}
+                  onClick={() => setDepSortBy('severity')}
+                >
+                  Severity
+                </button>
+                <button 
+                  className={`dep-sort-button ${depSortBy === 'cveCount' ? 'active' : ''}`}
+                  onClick={() => setDepSortBy('cveCount')}
+                >
+                  CVE Count
+                </button>
+                <button 
+                  className={`dep-sort-button ${depSortBy === 'name' ? 'active' : ''}`}
+                  onClick={() => setDepSortBy('name')}
+                >
+                  Name (A-Z)
+                </button>
+              </div>
+              <table className="table">
               <thead>
                 <tr>
                   <th>Dependency</th>
                   <th>Version</th>
-                  <th className="severity-column-header">
-                    <span>Severity</span>
-                    <span className="sort-indicator">↑</span>
-                  </th>
+                  <th>Severity</th>
                   <th>CVEs</th>
                   <th>Exploit?</th>
                   <th>Fix Version</th>
                 </tr>
               </thead>
               <tbody>
-                {repo.dependencies.map((dep) => {
+                {sortedDependencies.map((dep) => {
                   const depId = `${repo.name}-${dep.name}-${dep.version}`;
                   return (
                     <DependencyRow
@@ -77,6 +105,7 @@ function RepoSection({
                 })}
               </tbody>
             </table>
+          </>
           ) : (
             <div className="empty-state">
               <p>No vulnerabilities found.</p>
