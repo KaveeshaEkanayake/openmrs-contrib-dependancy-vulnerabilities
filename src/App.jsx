@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useVulnerabilityData } from './hooks/useVulnerabilityData';
 import RepoSection from './components/RepoSection';
+import { sortRepositories } from './utils/sortingUtils';
 
 function App() {
   const { data, loading, error } = useVulnerabilityData();
   const [expandedRepos, setExpandedRepos] = useState(new Set());
   const [expandedDependencies, setExpandedDependencies] = useState(new Set());
+  const [sortBy, setSortBy] = useState('severity');
+
+  // Sort repositories based on selected criteria
+  const sortedData = useMemo(() => {
+    return sortRepositories(data, sortBy);
+  }, [data, sortBy]);
 
   const toggleRepo = (repoId) => {
     const newSet = new Set(expandedRepos);
@@ -48,7 +55,29 @@ function App() {
           </div>
         ) : data && data.length > 0 ? (
           <>
-            {data.map((repo) => (
+            <div className="sorting-controls">
+              <span style={{ fontWeight: 600, marginRight: '10px' }}>Sort by:</span>
+              <button 
+                className={`sort-button ${sortBy === 'severity' ? 'active' : ''}`}
+                onClick={() => setSortBy('severity')}
+              >
+                Severity
+              </button>
+              <button 
+                className={`sort-button ${sortBy === 'cveCount' ? 'active' : ''}`}
+                onClick={() => setSortBy('cveCount')}
+              >
+                CVE Count
+              </button>
+              <button 
+                className={`sort-button ${sortBy === 'name' ? 'active' : ''}`}
+                onClick={() => setSortBy('name')}
+              >
+                Name (A-Z)
+              </button>
+            </div>
+            
+            {sortedData.map((repo) => (
               <RepoSection
                 key={repo.name}
                 repo={repo}
